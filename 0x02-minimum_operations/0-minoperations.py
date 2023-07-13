@@ -25,7 +25,7 @@ def minOperations(n):
 
 def getPrimeFactors(n):
     '''
-    A helper function that calculate the prime factors of a number n. 
+    A helper function that calculate the prime factors of a number n.
     '''
     factors = []
     i = 2
