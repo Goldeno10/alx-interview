@@ -1,5 +1,5 @@
-##!/usr/bin/python3
-"""THis omdule contains minOperations() function that takes an integer n as
+#!/usr/bin/python3
+"""THis momdule contains minOperations() function that takes an integer n as
 input and returns the fewest number of operations
 needed to obtain n H characters in the file, and getPrimeFactors() A helper
 function that calculate the prime factors of a number n.add()
