@@ -27,7 +27,7 @@ def print_log(size, status_codes):
     print(f'File size: {size}')
     for stat_code, count in status_codes.items():
         if count > 0:
-            print(f'{stat_code}:  {count}')
+            print(f'{stat_code}: {int(count)}')
 
 
 def parse_log():
