@@ -30,42 +30,42 @@ def print_log(size, status_codes):
             print(f'{stat_code}: {count}')
 
 
-def parse_log():
-    """This function reads stdin line by line and computes metrics"""
-    pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) -'\
-        r' \[(.*?)\]'\
-        r' "GET \/projects\/260 HTTP\/1\.1"'\
-        r' (\d{3})'\
-        r' (\d+)'
+# def parse_log():
+    # """This function reads stdin line by line and computes metrics"""
+pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) -'\
+    r' \[(.*?)\]'\
+    r' "GET \/projects\/260 HTTP\/1\.1"'\
+    r' (\d{3})'\
+    r' (\d+)'
 
-    status_codes = {'200': 0, '301': 0, '400': 0, '401': 0,
-                    '403': 0, '404': 0, '405': 0, '500': 0}
-    size = 0
-    i = 0
-    try:
-        for line in sys.stdin:
-            line = line.strip()
-            match = re.match(pattern, line)
-            if match:
-                ip_address = match.group(1)
-                date = match.group(2)
-                status_code = match.group(3)
-                file_size = match.group(4)
+status_codes = {'200': 0, '301': 0, '400': 0, '401': 0,
+                '403': 0, '404': 0, '405': 0, '500': 0}
+size = 0
+i = 0
+try:
+    for line in sys.stdin:
+        line = line.strip()
+        match = re.match(pattern, line)
+        if match:
+            ip_address = match.group(1)
+            date = match.group(2)
+            status_code = match.group(3)
+            file_size = match.group(4)
 
-                if type(status_code) is str \
-                    and status_code.isdigit() \
-                        and (str(status_code) in status_codes):
-                    status_codes[str(status_code)] += 1
+            if type(status_code) is str \
+                and status_code.isdigit() \
+                    and (str(status_code) in status_codes):
+                status_codes[str(status_code)] += 1
 
-                if type(file_size) is str and file_size.isdigit():
-                    size += int(file_size)
+            if type(file_size) is str and file_size.isdigit():
+                size += int(file_size)
 
-                i += 1
-                if i % 10 == 0:
-                    print_log(size, status_codes)
-    except KeyboardInterrupt:
-        print_log(size, status_codes)
+            i += 1
+            if i % 10 == 0:
+                print_log(size, status_codes)
+except KeyboardInterrupt:
+    print_log(size, status_codes)
 
 
-if __name__ == '__main__':
-    parse_log()
+# if __name__ == '__main__':
+#     parse_log()
