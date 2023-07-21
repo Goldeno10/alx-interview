@@ -45,7 +45,8 @@ def parse_log():
     try:
         for line in sys.stdin:
             parts = line.split()
-            if len(parts) != 7:
+            # print(f'parts >> {parts} length >> {len(parts)}')
+            if len(parts) != 9:
                 continue
             line = line.strip()
             match = re.match(pattern, line)
