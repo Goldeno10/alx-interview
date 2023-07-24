@@ -22,7 +22,7 @@ import re
 import sys
 
 
-def print_log(size, status_codes):
+def print_log(size=0, status_codes=''):
     """Prints the computed metric logs"""
     print(f'File size: {size}')
     for stat_code, count in status_codes.items():
@@ -51,8 +51,8 @@ def parse_log():
             line = line.strip()
             match = re.match(pattern, line)
             if match:
-                ip_address = match.group(1)
-                date = match.group(2)
+                # ip_address = match.group(1)
+                # date = match.group(2)
                 status_code = match.group(3)
                 file_size = match.group(4)
 
@@ -67,6 +67,7 @@ def parse_log():
                 i += 1
                 if i % 10 == 0:
                     print_log(size, status_codes)
+        print_log(size, status_codes)
     except KeyboardInterrupt:
         print_log(size, status_codes)
 
