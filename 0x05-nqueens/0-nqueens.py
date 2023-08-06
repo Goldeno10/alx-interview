@@ -21,6 +21,7 @@ Task:
 """
 import sys
 
+
 def is_safe(board, row, col, N):
     """
     Check if it's safe to place a queen at the given position on the board.
@@ -50,6 +51,7 @@ def is_safe(board, row, col, N):
             return False
 
     return True
+
 
 def solve_nqueens(N):
     """
