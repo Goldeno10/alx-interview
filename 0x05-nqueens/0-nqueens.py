@@ -68,6 +68,7 @@ def solve_nqueens(N):
     solutions = []
 
     def backtrack(row):
+        """implement backtrckig of the queen"""
         if row == N:
             solutions.append([[r, c] for r in range(N)
                               for c in range(N) if board[r][c] == 1])
