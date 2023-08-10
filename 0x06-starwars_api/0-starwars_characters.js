@@ -6,7 +6,6 @@ const baseUrl = 'https://swapi-api.alx-tools.com/api/films/';
 async function req (url) {
   request.get(url, (err, resp) => {
     if (err) {
-      console.log('error: ', err);
       return;
     }
 
@@ -27,7 +26,6 @@ async function getCharacters (chars) {
   for (const item of chars) {
     request.get(item, (err, resp) => {
       if (err) {
-        console.log('Error: ', err);
         return;
       }
       if (resp) {
@@ -46,7 +44,7 @@ async function getCharacters (chars) {
 const movieId = process.argv.slice(2)[0];
 try {
   if (Number.isInteger(Number(movieId))) {
-    const url = baseUrl + movieId;
+    const url = baseUrl + movieId + '/';
     req(url);
   }
 } catch (error) {
