@@ -11,21 +11,21 @@ Task:
     The value of a coin will always be an integer greater than 0
     You can assume you have an infinite number of each denomination of
     + coin in the list
-    Your solution’s runtime will be evaluated in this task
+    Your solution's runtime will be evaluated in this task
 """
 
 
 def makeChange(coins, total):
     """
-    Initialize a list to store the fewest number of coins
-    needed for each amount from 0 to total.
+    determine the fewest number of coins needed to meet a given amount
     """
     dp = [float('inf')] * (total + 1)
     dp[0] = 0
 
     for coin in coins:
-        for amount in range(coin, total + 1):
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
+        if coin <= total:
+            for amount in range(coin, total + 1):
+                dp[amount] = min(dp[amount], dp[amount - coin] + 1)
 
     if dp[total] == float('inf'):
         return -1
