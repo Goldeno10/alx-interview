@@ -38,51 +38,49 @@ Task:
 
 
 def isWinner(x, nums):
-    """Determine who the winner of each game is."""
-    def sieve(n):
-        """Sieve of Eratosthenes."""
-        is_prime = [True] * (n + 1)
-        is_prime[0] = is_prime[1] = False
-        p = 2
-        while p * p <= n:
-            if is_prime[p]:
-                for i in range(p * p, n + 1, p):
-                    is_prime[i] = False
-            p += 1
-        primes = [i for i in range(2, n + 1) if is_prime[i]]
+    """Determines the winner of each game"""
+    def is_prime(num):
+        """Checks if a number is prime"""
+        if num <= 1:
+            return False
+        if num <= 3:
+            return True
+        if num % 2 == 0 or num % 3 == 0:
+            return False
+        i = 5
+        while i * i <= num:
+            if num % i == 0 or num % (i + 2) == 0:
+                return False
+            i += 6
+        return True
+
+    def find_primes_up_to_n(n):
+        """Find all prin numbers in range of n"""
+        primes = []
+        for i in range(2, n + 1):
+            if is_prime(i):
+                primes.append(i)
         return primes
 
-    def canWin(n, primes):
-        """Determine if a player can win."""
-        if n <= 1:
-            return False
-        for prime in primes:
-            if n % prime == 0:
-                return True
-        return False
+    max_n = max(nums)
+    primes = find_primes_up_to_n(max_n)
+    dp = [None] * (max_n + 1)
+    dp[0] = dp[1] = False
+
+    for i in range(2, max_n + 1):
+        if not dp[i]:
+            for prime in primes:
+                if i + prime <= max_n:
+                    dp[i + prime] = True
 
     maria_wins = 0
     ben_wins = 0
 
     for n in nums:
-        primes = sieve(n)
-        maria_turn = True
-
-        while n > 0:
-            if canWin(n, primes):
-                for prime in primes:
-                    if n % prime == 0:
-                        n -= prime
-                        break
-            else:
-                break
-
-            maria_turn = not maria_turn
-
-        if maria_turn:
-            ben_wins += 1
-        else:
+        if dp[n]:
             maria_wins += 1
+        else:
+            ben_wins += 1
 
     if maria_wins > ben_wins:
         return "Maria"
