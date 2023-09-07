@@ -42,6 +42,9 @@ def isWinner(x, nums):
     if not x or not nums:
         return None
 
+    if x < 1 or min(nums) < 1:
+        return None
+
     def is_prime(num):
         """Checks if a number is prime"""
         if num <= 1:
