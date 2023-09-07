@@ -42,7 +42,7 @@ def isWinner(x, nums):
     if not x or not nums:
         return None
 
-    if x < 1:
+    if x < 1 or len(nums) < 1:
         return None
 
     def is_prime(num):
