@@ -56,11 +56,6 @@ def isWinner(x, nums):
 
     if not all(n > 0 for n in nums):
         return None
-
-    if not all(n <= 10000 for n in nums):
-        return None
-    if not all(x <= 10000 for x in nums):
-        return None
     
     if not all(is_prime(n) for n in nums):
         return None
