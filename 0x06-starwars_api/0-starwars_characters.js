@@ -22,7 +22,6 @@ async function req (url) {
 }
 
 async function getCharacters (chars) {
-  // const actors = [];
   for (const item of chars) {
     request.get(item, (err, resp) => {
       if (err) {
@@ -31,7 +30,6 @@ async function getCharacters (chars) {
       if (resp) {
         try {
           const data = JSON.parse(resp.body);
-          // actors.push(data.name);
           console.log(data.name);
         } catch (parseError) {
           console.log('Error parsing response body:', parseError);

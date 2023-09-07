@@ -39,6 +39,9 @@ Task:
 
 def isWinner(x, nums):
     """Determines the winner of each game"""
+    if not x or not nums:
+        return None
+
     def is_prime(num):
         """Checks if a number is prime"""
         if num <= 1:
