@@ -51,6 +51,9 @@ def isWinner(x, nums):
     if type(x) is not int or type(nums) is not list:
         return None
 
+    if not all(type(n) is int for n in nums):
+        return None
+
     def is_prime(num):
         """Checks if a number is prime"""
         if num <= 1:
