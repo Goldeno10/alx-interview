@@ -38,7 +38,9 @@ Task:
 
 
 def isWinner(x, nums):
+    """Determine who the winner of each game is."""
     def sieve(n):
+        """Sieve of Eratosthenes."""
         is_prime = [True] * (n + 1)
         is_prime[0] = is_prime[1] = False
         p = 2
@@ -51,6 +53,7 @@ def isWinner(x, nums):
         return primes
 
     def canWin(n, primes):
+        """Determine if a player can win."""
         if n <= 1:
             return False
         for prime in primes:
