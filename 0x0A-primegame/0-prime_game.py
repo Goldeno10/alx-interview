@@ -56,9 +56,6 @@ def isWinner(x, nums):
 
     if not all(n > 0 for n in nums):
         return None
-    
-    if not all(is_prime(n) for n in nums):
-        return None
 
     def is_prime(num):
         """Checks if a number is prime"""
